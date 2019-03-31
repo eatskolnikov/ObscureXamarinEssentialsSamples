@@ -12,8 +12,11 @@ namespace XamEssentials.Views
             InitializeComponent();
             try
             {
-                Gyroscope.ReadingChanged += ReadingChanged;
-                Gyroscope.Start(SensorSpeed.UI);
+                if (!Gyroscope.IsMonitoring)
+                {
+                    Gyroscope.ReadingChanged += ReadingChanged;
+                    Gyroscope.Start(SensorSpeed.UI);
+                }
             }
             catch (FeatureNotSupportedException fnsEx)
             {

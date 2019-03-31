@@ -12,8 +12,11 @@ namespace XamEssentials.Views
             InitializeComponent();
             try
             {
-                Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
-                Accelerometer.Start(SensorSpeed.UI);
+                if (!Accelerometer.IsMonitoring)
+                {
+                    Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+                    Accelerometer.Start(SensorSpeed.UI);
+                }
             }
             catch (FeatureNotSupportedException fnsEx)
             {

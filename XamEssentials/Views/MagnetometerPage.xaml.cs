@@ -12,8 +12,11 @@ namespace XamEssentials.Views
             InitializeComponent();
             try
             {
-                Magnetometer.ReadingChanged += ReadingChanged;
-                Magnetometer.Start(SensorSpeed.UI);
+                if (!Magnetometer.IsMonitoring)
+                {
+                    Magnetometer.ReadingChanged += ReadingChanged;
+                    Magnetometer.Start(SensorSpeed.UI);
+                }
             }
             catch (FeatureNotSupportedException fnsEx)
             {

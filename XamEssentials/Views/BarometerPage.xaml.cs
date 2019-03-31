@@ -12,8 +12,11 @@ namespace XamEssentials.Views
             InitializeComponent();
             try
             {
-                Barometer.ReadingChanged += ReadingChanged;
-                Barometer.Start(SensorSpeed.UI);
+                if (!Barometer.IsMonitoring)
+                {
+                    Barometer.ReadingChanged += ReadingChanged;
+                    Barometer.Start(SensorSpeed.UI);
+                }
             }
             catch (FeatureNotSupportedException fnsEx)
             {
